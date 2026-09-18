@@ -1,9 +1,14 @@
 ﻿import './App.css';
-import BlogPost from './BlogPost';
+import Header from './components/Header';
+import BlogPost from './components/BlogPost';
 
 function App() {
     return (
+        <>
+        <Header />
         <BlogPost />
+
+        </>
     );
 }
 
