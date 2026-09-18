@@ -1,0 +1,6 @@
+@WoodShopBlog.Server_HostAddress = http://localhost:5034
+
+GET {{WoodShopBlog.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

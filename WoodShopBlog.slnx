@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="woodshopblog.client/woodshopblog.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="WoodShopBlog.Server/WoodShopBlog.Server.csproj" />
+</Solution>
