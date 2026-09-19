@@ -1,9 +1,10 @@
-import BlogPostTitleCard from "./components/BlogPostTitleCard";
+import BlogPostTitle from "./BlogPostTitle";
 
 export default function BlogPost() {
   return (
     <>
-      <BlogPostTitleCard />
+      <BlogPostTitle />
+
       <div className="divider" />
       <section className="content text-left">
         <p>

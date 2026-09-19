@@ -7,7 +7,7 @@
   --color-secondary: #646E78;
   --color-accent: #4D9DE0;
   --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @layer base {

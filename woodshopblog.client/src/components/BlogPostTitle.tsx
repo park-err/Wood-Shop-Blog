@@ -1,4 +1,4 @@
-export default function BlogPostTitleCard() {
+export default function BlogPostTitle() {
   return (
     <div className="p-4 flex flex-col items-start justify-start gap-2">
       <span className="text-secondary">Author and Posted Date</span>
