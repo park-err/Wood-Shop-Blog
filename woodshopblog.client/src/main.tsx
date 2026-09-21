@@ -1,10 +1,16 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Header from "./components/Header";
+import BlogList from "./components/BlogList";
+import BlogPost from "./components/BlogPost";
 import "./index.css";
-import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <BrowserRouter>
+    <Header />
+    <Routes>
+      <Route path="/" element={<BlogList />} />
+      <Route path="/blogs/:blogId" element={<BlogPost />} />
+    </Routes>
+  </BrowserRouter>,
 );

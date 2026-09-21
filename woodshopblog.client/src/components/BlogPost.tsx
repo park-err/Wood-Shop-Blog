@@ -2,11 +2,11 @@ import BlogPostTitle from "./BlogPostTitle";
 
 export default function BlogPost() {
   return (
-    <>
+    <section className="blog-post w-full mx-auto my-8 p-8">
       <BlogPostTitle />
 
       <div className="divider" />
-      <section className="content text-left">
+      <article className="content text-left">
         <p>
           Stepping into the workshop for the first time—or returning to it after
           years away—evokes a unique blend of reverence and excitement. The rich
@@ -24,7 +24,7 @@ export default function BlogPost() {
           passion; it demands a deep understanding of core techniques and
           respect for your raw material.
         </p>
-      </section>
-    </>
+      </article>
+    </section>
   );
 }
