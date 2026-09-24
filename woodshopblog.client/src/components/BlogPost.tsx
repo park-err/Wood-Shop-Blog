@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { apiClient } from "@/lib/api-client";
 import parse from "html-react-parser";
 import BlogPostTitle from "./BlogPostTitle";
 import type { BlogPost } from "@/types/blogs";
@@ -6,17 +8,26 @@ import type { BlogPost } from "@/types/blogs";
 export default function BlogPost() {
   const { blogId } = useParams<{ blogId: string }>();
 
-  // Fetch the blog post data based on the blogId
-  // For demonstration purposes, we'll use a static example
-  const blogPost: BlogPost = {
-    title: "Example Blog Post Title",
-    subtitle: "An example subtitle for the blog post",
-    author: "John Doe",
-    date: "October 15, 2023",
-    content: "<p>This is the content of the example blog post.</p>",
-  };
+  const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
 
-  const { title, subtitle, author, date, content } = blogPost;
+  useEffect(() => {
+    const fetchBlogPost = async () => {
+      try {
+        const response = await apiClient.get<BlogPost>(`/blogpost/${blogId}`);
+        setBlogPost(response.data);
+      } catch (error) {
+        console.error("Error fetching blog post:", error);
+      }
+    };
+
+    fetchBlogPost();
+  }, [blogId]);
+
+  if (!blogPost) {
+    return <div className="loading">Loading...</div>;
+  }
+
+  const { title, subtitle, author, date, tags, content } = blogPost;
 
   return (
     <section className="blog-post w-full mx-auto my-8 p-8">

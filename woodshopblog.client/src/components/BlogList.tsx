@@ -1,26 +1,33 @@
+import { useEffect, useState } from "react";
 import BlogListCard from "./BlogListCard";
 import type { BlogPost } from "@/types/blogs";
+import { apiClient } from "@/lib/api-client";
 
 export default function BlogList() {
-  const blogPosts: BlogPost[] = [
-    {
-      title: "First Blog Post",
-      subtitle: "An example subtitle for the first blog post",
-      thumbnailUrl: "/chop-saw-woodsmith.jpg",
-      author: "John Doe",
-      date: "October 15, 2023",
-      content: "This is the content of the first blog post.",
-    },
-  ];
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await apiClient.get<BlogPost[]>("/blogpost");
+        setBlogPosts(response.data);
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+      }
+    };
+
+    fetchBlogPosts();
+  }, blogPosts);
+
   return (
     <div className="blog-list w-full mx-auto my-8 p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-9 justify-items-center content-center">
-      {blogPosts.map((post, index) => (
+      {blogPosts.map((post) => (
         <BlogListCard
-          key={index}
-          blogId={index.toString()}
+          key={post.id}
+          blogId={post.id}
           title={post.title}
           excerpt={post.content.substring(0, 100) + "..."}
-          imageUrl={post.thumbnailUrl || ""}
+          imageUrl="/chop-saw-woodsmith.jpg"
         />
       ))}
     </div>
