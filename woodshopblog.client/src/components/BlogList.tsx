@@ -17,7 +17,7 @@ export default function BlogList() {
     };
 
     fetchBlogPosts();
-  }, blogPosts);
+  }, []);
 
   return (
     <div className="blog-list w-full mx-auto my-8 p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-9 justify-items-center content-center">
@@ -27,7 +27,7 @@ export default function BlogList() {
           blogId={post.id}
           title={post.title}
           excerpt={post.content.substring(0, 100) + "..."}
-          imageUrl="/chop-saw-woodsmith.jpg"
+          imageUrl={post.thumbnailUrl}
         />
       ))}
     </div>

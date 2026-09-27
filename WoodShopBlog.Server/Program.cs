@@ -1,3 +1,4 @@
+using WoodShopBlog.Server;
 using WoodShopBlog.Server.Repositories;
 using WoodShopBlog.Server.Repositories.Interfaces;
 using WoodShopBlog.Server.Services;
@@ -19,6 +20,9 @@ builder.Services.AddCors(options =>
                                 .AllowAnyHeader();
                       });
 });
+
+// Connection String Builder
+builder.Services.Configure<WoodShopBlog.Server.MongoDBConnection>(builder.Configuration.GetSection("MongoDBConnection"));
 
 // Add services to the container.
 

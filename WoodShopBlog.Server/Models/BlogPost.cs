@@ -8,6 +8,7 @@ namespace WoodShopBlog.Server.Models
         public string Subtitle { get; set; }
         public string Author { get; set; }
         public string[] Tags { get; set; }
+        public string ThumbnailUrl { get; set; } = "/placeholder.jpg";
         public string Content { get; set; }
     }
 }
