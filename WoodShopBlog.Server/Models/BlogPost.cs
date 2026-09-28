@@ -1,14 +1,16 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace WoodShopBlog.Server.Models
 {
     public class BlogPost : BaseModel
     {
-        public string Title { get; set; }
-        public string Subtitle { get; set; }
-        public string Author { get; set; }
-        public string[] Tags { get; set; }
+        public required string Title { get; set; }
+        public required string Subtitle { get; set; }
+        public required string Author { get; set; }
+        public string[] Tags { get; set; } = [];
         public string ThumbnailUrl { get; set; } = "/placeholder.jpg";
-        public string Content { get; set; }
+        public BlogContent[] Content { get; set; } = [];
     }
 }

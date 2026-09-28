@@ -3,8 +3,14 @@ export interface BlogPost {
   title: string;
   subtitle: string;
   author: string;
-  date: string;
+  createdAt: string;
   thumbnailUrl: string;
   tags: string[];
-  content: string;
+  content: Content[];
+}
+
+export interface Content {
+  type: string;
+  source: string;
+  text: string;
 }

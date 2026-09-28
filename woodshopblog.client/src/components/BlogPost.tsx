@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { apiClient } from "@/lib/api-client";
 import parse from "html-react-parser";
 import BlogPostTitle from "./BlogPostTitle";
+import BlogPostContent from "./BlogPostContent";
 import type { BlogPost } from "@/types/blogs";
 
 export default function BlogPost() {
@@ -27,7 +28,7 @@ export default function BlogPost() {
     return <div className="loading">Loading...</div>;
   }
 
-  const { title, subtitle, author, date, tags, content } = blogPost;
+  const { title, subtitle, author, createdAt, tags, content } = blogPost;
 
   return (
     <section className="blog-post w-full mx-auto my-8 p-8">
@@ -35,10 +36,10 @@ export default function BlogPost() {
         title={title}
         subtitle={subtitle}
         author={author}
-        date={date}
+        date={new Date(createdAt)}
       />
       <div className="divider" />
-      <article className="content text-left">{parse(content)}</article>
+      <BlogPostContent content={content} />
     </section>
   );
 }
