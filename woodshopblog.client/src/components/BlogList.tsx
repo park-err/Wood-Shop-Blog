@@ -26,7 +26,7 @@ export default function BlogList() {
           key={post.id}
           blogId={post.id}
           title={post.title}
-          excerpt={post.content[0].text.substring(0, 100) + "..."}
+          excerpt={post.excerpt.substring(0, 100) + "..."}
           imageUrl={post.thumbnailUrl}
         />
       ))}

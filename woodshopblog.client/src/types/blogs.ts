@@ -6,11 +6,13 @@ export interface BlogPost {
   createdAt: string;
   thumbnailUrl: string;
   tags: string[];
+  excerpt: string;
   content: Content[];
 }
 
-export interface Content {
-  type: string;
-  source: string;
-  text: string;
-}
+export type Content =
+  { type: 'heading'; level: number; text: string; }
+  | { type: 'paragraph'; text: string } 
+  | { type: 'list'; ordered: boolean; items: string[]; }
+  | { type: 'image'; source: string; alt: string; caption: string; } 
+  | { type: 'link'; source: string; text: string; }

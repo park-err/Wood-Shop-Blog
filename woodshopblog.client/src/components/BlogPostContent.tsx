@@ -1,22 +1,35 @@
 import type { Content } from "../types/blogs";
+import { JSX } from "react/jsx-runtime";
 
 interface BlogPostContentProp {
   content: Content[];
 }
 
-function ContentBlock({ type, source, text }: Content) {
-  switch (type) {
+function ContentBlock({ content }: { content: Content }) {
+  switch (content.type) {
     case "heading":
-      return <h1 className="content-heading">{text}</h1>;
-    case "subheading":
-      return <h2 className="content-subheading">{text}</h2>;
+      const Tag = `h${content.level}` as keyof JSX.IntrinsicElements;
+      return <Tag className="content-heading">{content.text}</Tag>;
     case "paragraph":
-      return <p className="content-par">{text}</p>;
+      return <p className="content-par text-md">{content.text}</p>;
+    case "link":
+      return <a href={content.source}>{content.text}</a>;
+    case "list":
+      const ListTag = (
+        content.ordered ? "ol" : "ul"
+      ) as keyof JSX.IntrinsicElements;
+      return (
+        <ListTag>
+          {content.items.map((item, i) => {
+            return <li key={i}>{item}</li>;
+          })}
+        </ListTag>
+      );
     case "image":
       return (
         <figure>
-          <img src={source} alt={source} />
-          <figcaption>{text}</figcaption>
+          <img src={content.source} alt={content.alt} />
+          <figcaption>{content.caption}</figcaption>
         </figure>
       );
   }
@@ -25,8 +38,8 @@ function ContentBlock({ type, source, text }: Content) {
 export default function BlogPostContent({ content }: BlogPostContentProp) {
   return (
     <article className="content text-left">
-      {content.map(({ type, source, text }, i) => (
-        <ContentBlock key={i} type={type} source={source} text={text} />
+      {content.map((block, i) => (
+        <ContentBlock key={i} content={block} />
       ))}
     </article>
   );
