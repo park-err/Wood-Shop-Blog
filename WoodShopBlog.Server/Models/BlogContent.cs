@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Text.Json.Serialization;
 
 namespace WoodShopBlog.Server.Models
 {
@@ -8,6 +9,7 @@ namespace WoodShopBlog.Server.Models
     [JsonDerivedType(typeof(ListBlock), "list")]
     [JsonDerivedType(typeof(ImageBlock), "image")]
     [JsonDerivedType(typeof(LinkBlock), "link")]
+    [BsonKnownTypes(typeof(HeaderBlock), typeof(ParagraphBlock), typeof(ImageBlock), typeof(ListBlock), typeof(LinkBlock))]
     public abstract record BlogContent();
     public record HeaderBlock(int Level, string Text) : BlogContent();
     public record ParagraphBlock(string Text) : BlogContent();
